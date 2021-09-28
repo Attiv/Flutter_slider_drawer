@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slider_drawer/src/slider_direction.dart';
+import 'package:flutter_slider_drawer_v/src/slider_direction.dart';
 
 ///
 /// Build and Align the Menu widget based on the slide open type

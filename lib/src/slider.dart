@@ -1,9 +1,9 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slider_drawer/src/app_bar.dart';
-import 'package:flutter_slider_drawer/src/menu_bar.dart';
-import 'package:flutter_slider_drawer/src/helper/utils.dart';
-import 'package:flutter_slider_drawer/src/slider_direction.dart';
+import 'package:flutter_slider_drawer_v/src/app_bar.dart';
+import 'package:flutter_slider_drawer_v/src/menu_bar.dart';
+import 'package:flutter_slider_drawer_v/src/helper/utils.dart';
+import 'package:flutter_slider_drawer_v/src/slider_direction.dart';
 
 /// SliderMenuContainer which have two [sliderMain] and [sliderMenu] parameter
 ///
