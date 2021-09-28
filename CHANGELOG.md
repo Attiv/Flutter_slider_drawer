@@ -1,3 +1,5 @@
+## [2.0.1] - Release
+* Add a var to decide whether to use GestureDetector to resolve google map disable
 ## [2.0.0] - Release
 
  * Added null safety 

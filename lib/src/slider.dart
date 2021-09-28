@@ -135,6 +135,11 @@ class SliderMenuContainer extends StatefulWidget {
   ///
   final SlideDirection slideDirection;
 
+  ///[bool] if you set [false] then not set body under GestureDetector.
+  ///By Default it's true
+  ///
+  final bool useGestureDetector;
+
   const SliderMenuContainer({
     Key? key,
     required this.sliderMenu,
@@ -159,6 +164,7 @@ class SliderMenuContainer extends StatefulWidget {
     this.shadowBlurRadius = 25.0,
     this.shadowSpreadRadius = 5.0,
     this.hasAppBar = true,
+    this.useGestureDetector = true,
   }) : super(key: key);
 
   @override
@@ -266,39 +272,61 @@ class SliderMenuContainerState extends State<SliderMenuContainer>
               child: child,
             );
           },
-          child: GestureDetector(
-            behavior: HitTestBehavior.deferToChild,
-            onHorizontalDragStart: _onHorizontalDragStart,
-            onHorizontalDragEnd: _onHorizontalDragEnd,
-            onHorizontalDragUpdate: (detail) =>
-                _onHorizontalDragUpdate(detail, constrain),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              color: widget.appBarColor,
-              child: Column(
-                children: <Widget>[
-                  if (widget.hasAppBar)
-                    SliderAppBar(
-                      slideDirection: widget.slideDirection,
-                      onTap: () => toggle(),
-                      appBarHeight: widget.appBarHeight,
-                      animationController: _animationDrawerController!,
-                      appBarColor: widget.appBarColor,
-                      appBarPadding: widget.appBarPadding!,
-                      drawerIcon: widget.drawerIcon,
-                      drawerIconColor: widget.drawerIconColor,
-                      drawerIconSize: widget.drawerIconSize,
-                      isTitleCenter: widget.isTitleCenter,
-                      splashColor: widget.splashColor,
-                      title: widget.title,
-                      trailing: widget.trailing,
+          child: widget.useGestureDetector
+              ? GestureDetector(
+                  behavior: HitTestBehavior.deferToChild,
+                  onHorizontalDragStart: _onHorizontalDragStart,
+                  onHorizontalDragEnd: _onHorizontalDragEnd,
+                  onHorizontalDragUpdate: (detail) =>
+                      _onHorizontalDragUpdate(detail, constrain),
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: widget.appBarColor,
+                    child: Column(
+                      children: <Widget>[
+                        if (widget.hasAppBar)
+                          SliderAppBar(
+                            slideDirection: widget.slideDirection,
+                            onTap: () => toggle(),
+                            appBarHeight: widget.appBarHeight,
+                            animationController: _animationDrawerController!,
+                            appBarColor: widget.appBarColor,
+                            appBarPadding: widget.appBarPadding!,
+                            drawerIcon: widget.drawerIcon,
+                            drawerIconColor: widget.drawerIconColor,
+                            drawerIconSize: widget.drawerIconSize,
+                            isTitleCenter: widget.isTitleCenter,
+                            splashColor: widget.splashColor,
+                            title: widget.title,
+                            trailing: widget.trailing,
+                          ),
+                        Expanded(child: widget.sliderMain),
+                      ],
                     ),
-                  Expanded(child: widget.sliderMain),
-                ],
-              ),
-            ),
-          ),
+                  ),
+                )
+              : Column(
+                  children: <Widget>[
+                    if (widget.hasAppBar)
+                      SliderAppBar(
+                        slideDirection: widget.slideDirection,
+                        onTap: () => toggle(),
+                        appBarHeight: widget.appBarHeight,
+                        animationController: _animationDrawerController!,
+                        appBarColor: widget.appBarColor,
+                        appBarPadding: widget.appBarPadding!,
+                        drawerIcon: widget.drawerIcon,
+                        drawerIconColor: widget.drawerIconColor,
+                        drawerIconSize: widget.drawerIconSize,
+                        isTitleCenter: widget.isTitleCenter,
+                        splashColor: widget.splashColor,
+                        title: widget.title,
+                        trailing: widget.trailing,
+                      ),
+                    Expanded(child: widget.sliderMain),
+                  ],
+                ),
         ),
       ]));
     });
